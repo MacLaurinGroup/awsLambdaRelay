@@ -163,7 +163,7 @@ You can think of it
    +----+----+
 ```
 
-### Process flow: Paralell Execution
+### Process flow: Parallel Execution
 
 If you can have your units run in parallel, then it is easy to use the same mechanism but instead of calling .relayPass() just once, you call it for each processing unit, setting some sort of parameter in the relayPkt to let the Lambda-Worker know which piece of the puzzle they are working on.
 
@@ -186,7 +186,7 @@ If you can have your units run in parallel, then it is easy to use the same mech
 +----------------+  +----------------+  +----------------+
 ```
 
-Note, depending on the number of units, under the covers Amazon may or may-not run them in paralell.  Given the nature of how Lamdba pulls messages off the SQS queue, then anything less than 10 will most likely result in a serial execution anyway.
+Note, depending on the number of units, under the covers Amazon may or may-not run them in parallel.  Given the nature of how Lamdba pulls messages off the SQS queue, then anything less than 10 will most likely result in a serial execution anyway.
 
 ### Permissions
 
