@@ -211,6 +211,7 @@ iamRoleStatements:
 1. The SQS Queue will be setup under the same AWS Account and Region to which the setup Lambda is executing within
 1. The Lambda function name is the logical name of the Lambda as seen in the Lambda console
 1. You can override the queue name that is created by passing it in to .setup()
+1. If you intend to have your relay function to run longer than the default 30 seconds, then you need to pass in a 'VisibilityTimeout' within the attributes of the setup that is timeout of your Lambda
 
 The relayPkt has the following makeup:
 
