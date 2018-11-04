@@ -1,6 +1,6 @@
 {
   "name": "mg-aws-lambda-relay",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/MacLaurinGroup/awsLambdaRelay",
   "description": "Split up a long running task over multiple Lambda calls using SQS to relay processing to a new Lambda",
   "main": "index.js",

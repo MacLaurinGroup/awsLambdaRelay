@@ -45,8 +45,8 @@ module.exports = {
     };
 
     attributes = typeof attributes  !== "object"  ?  {} : attributes;
-    if ( typeof(attributes.DelaySeconds) == 'undefined'  ){
-      attributes.DelaySeconds = 0;
+    if ( typeof(attributes.DelaySeconds) == "undefined" ){
+      attributes.DelaySeconds = "0";
     }
 
     // Create a new queue
