@@ -27,7 +27,7 @@ module.exports = {
    * Creates the temporary SQS queue and attaches it to the given Lambda function
    * 
    */
-  setup: async function(context, lambdaFunctionName, queueName) {
+  setup: async function(context, lambdaFunctionName, queueName, attributes) {
     const awsRegion = JSON.stringify(context.invokedFunctionArn).split(":")[3];
     const awsAccId = JSON.stringify(context.invokedFunctionArn).split(":")[4];
 
@@ -44,12 +44,15 @@ module.exports = {
       }
     };
 
+    attributes = typeof attributes  !== "object"  ?  {} : attributes;
+    if ( typeof(attributes.DelaySeconds) == 'undefined'  ){
+      attributes.DelaySeconds = 0;
+    }
+
     // Create a new queue
     const sqsResult = await sqs.createQueue({
       QueueName: queueName,
-      Attributes: {
-        DelaySeconds: "0"
-      }
+      Attributes: attributes
     }).promise();
 
     relayPkt.QueueUrl = sqsResult.QueueUrl;

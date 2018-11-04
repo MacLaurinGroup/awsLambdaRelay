@@ -22,7 +22,7 @@ The advantage of doing it programmatically is the reduced administration when it
 Currently, Amazon limits the execution time to:
 
 * 30 seconds if triggered from the API Gateway
-* 5 minutes for all other calls
+* 15 minutes for all other calls
 
 ## Installation
 
@@ -32,11 +32,14 @@ npm install mg-aws-lambda-relay
 
 The API:
 
-* .setup(context, lambdaFunc [,queueName])
+* .setup(context, lambdaFunc [,queueName, attributes])
 * .getRelayPkt(event)
 * .relayPass(relayPkt [,delaySeconds])
 * .tearDown(relayPkt)
 
+If you want to override some of the queue attributes, then you must pass in the queueName and an object with the necessary attributes
+
+* https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SQS.html#createQueue-property
 
 ## Usage: Step 1; the setup
 
@@ -228,5 +231,9 @@ The relayPkt has the following makeup:
 This came around when we were trying to send a large number of emails through Amazon SES which has its own limitations around saturation (14 emails/per second, 50k per day).  Wanted an elegant solution that didn't complicate the business logic but would take care of the backing-off of SES and try again if we gave it too much, as well as processing more than a single Lambda execution would permit.
 
 ### Feedback
+
+## Updates
+
+* 2018-11-04 : Added ability to pass through extra attributes to the queue creations
 
 Always welcome feedback and any additions.
